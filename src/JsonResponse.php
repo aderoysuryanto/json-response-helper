@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse as Response;
 class JsonResponse
 {
     const
-        KEY_MESSAGE     = 'msg',
+        KEY_MESSAGE     = 'message',
         KEY_CODE        = 'code',
         KEY_DATA        = 'data',
 

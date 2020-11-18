@@ -20,7 +20,7 @@ if (! function_exists('success')) {
      */
     function success($data = [], string $message = '', int $code = 0, array $headers = [], int $httpStatusCode = 200)
     {
-        return \Turbo\Api\Helper\JsonResponse::response(
+        return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
         );
     }
@@ -37,7 +37,7 @@ if (! function_exists('fail')) {
      */
     function fail(string $message = 'fail.', int $code = 5000, $data = [], array $headers = [], int $httpStatusCode = 200)
     {
-        return \Turbo\Api\Helper\JsonResponse::response(
+        return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
         );
     }
