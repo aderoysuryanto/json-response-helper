@@ -1,0 +1,44 @@
+{
+    "name": "iluckin/json-response-helper",
+    "description": "A json response helper for laravel|lumen framework",
+    "license": ["MIT"],
+    "authors": [
+        {
+            "name": "iluckin",
+            "email": "dev@iluckin.cn",
+            "homepage": "https://dev.iluckin.cn/open-source"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.2",
+        "symfony/http-foundation": "^5"
+    },
+    "require-dev": {
+        "laravel/laravel": "*",
+        "laravel/lumen-framework": "*",
+        "phpunit/phpunit": "^4.8.35 || ^5.4.3 || ^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Turbo\\Api\\Helper\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Turbo\\Api\\Helper\\LaravelServiceProvider"
+            ]
+        }
+    }
+}
