@@ -36,9 +36,15 @@ class JsonResponse
             $message = $message ?: Config::get('json-helper.response_meta_default.message', Code::getStatusText(Code::OK));
         }
 
-        return new Response(
+        $response = new Response(
             static::makePayload($data, $message, $code), $httpStatusCode, static::withGlobalHeaders($headers)
         );
+
+        if (class_exists('Illuminate\Http\Response')) {
+            return $response;
+        }
+
+        return $response->send();
     }
 
     /**
