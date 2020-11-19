@@ -21,7 +21,7 @@ if (! function_exists('success')) {
      * @param int $httpStatusCode
      * @return Response
      */
-    function success($data = [], string $message = '', int $code = Code::OK, array $headers = [], int $httpStatusCode = Response::HTTP_OK)
+    function success($data = [], string $message = 'OK', int $code = Code::OK, array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
@@ -39,7 +39,7 @@ if (! function_exists('fail')) {
      * @param int $httpStatusCode
      * @return Response
      */
-    function fail(string $message = 'fail.', int $code = Code::FAIL, $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
+    function fail(string $message = 'Fail', int $code = Code::FAIL, $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
