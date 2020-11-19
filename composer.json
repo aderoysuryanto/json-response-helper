@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.2",
-        "symfony/http-foundation": "^5"
+        "symfony/http-foundation": "*"
     },
     "require-dev": {
         "laravel/laravel": "*",
