@@ -8,6 +8,9 @@
  * @link      https://dev.iluckin.cn/open-source
  */
 
+use Turbo\Api\Helper\Code;
+use Symfony\Component\HttpFoundation\JsonResponse as Response;
+
 if (! function_exists('success')) {
 
     /**
@@ -16,9 +19,9 @@ if (! function_exists('success')) {
      * @param int $code
      * @param array $headers
      * @param int $httpStatusCode
-     * @return \Illuminate\Http\JsonResponse
+     * @return Response
      */
-    function success($data = [], string $message = '', int $code = 0, array $headers = [], int $httpStatusCode = 200)
+    function success($data = [], string $message = '', int $code = Code::OK, array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
@@ -33,12 +36,25 @@ if (! function_exists('fail')) {
      * @param int $code
      * @param array $data
      * @param array $headers
-     * @return \Illuminate\Http\JsonResponse
+     * @param int $httpStatusCode
+     * @return Response
      */
-    function fail(string $message = 'fail.', int $code = 5000, $data = [], array $headers = [], int $httpStatusCode = 200)
+    function fail(string $message = 'fail.', int $code = Code::FAIL, $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
             $data, $message, $code, $headers, $httpStatusCode
         );
+    }
+}
+
+if (! function_exists('status_text')) {
+
+    /**
+     * @param int $code
+     * @return string
+     */
+    function status_text(int $code) : string
+    {
+        return Turbo\Api\Helper\Code::getStatusText($code);
     }
 }
