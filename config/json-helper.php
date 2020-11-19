@@ -29,9 +29,9 @@ return [
 	*/
 
 	'response_key_map' => [
-        Turbo\Api\Helper\JsonResponse::KEY_MESSAGE => 'message',
         Turbo\Api\Helper\JsonResponse::KEY_CODE    => 'code',
         Turbo\Api\Helper\JsonResponse::KEY_DATA    => 'data',
+        Turbo\Api\Helper\JsonResponse::KEY_MESSAGE => 'message',
 	],
 
     /*

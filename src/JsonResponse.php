@@ -30,9 +30,11 @@ class JsonResponse
      */
     public static function response($data = [], string $message = 'OK', int $code = Code::OK, array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
-        $code = $code ?: Config::get('json-helper.response_meta_default.code', Code::OK);
-        $data = $data ?: Config::get('json-helper.response_meta_default.data', []);
-        $message = $message ?: Config::get('json-helper.response_meta_default.message', Code::getStatusText(Code::OK));
+        if (class_exists('Illuminate\Support\Facades\Config')) {
+            $code = $code ?: Config::get('json-helper.response_meta_default.code', Code::OK);
+            $data = $data ?: Config::get('json-helper.response_meta_default.data', []);
+            $message = $message ?: Config::get('json-helper.response_meta_default.message', Code::getStatusText(Code::OK));
+        }
 
         return new Response(
             static::makePayload($data, $message, $code), $httpStatusCode, static::withGlobalHeaders($headers)
@@ -48,7 +50,10 @@ class JsonResponse
      */
     public static function makePayload($data, string $message, int $code)
     {
-        $keys = Config::get('json-helper.response_key_map', []);
+        $keys = [];
+        if (class_exists('Illuminate\Support\Facades\Config')) {
+            $keys = Config::get('json-helper.response_key_map', []);
+        }
 
         return [
             $keys[static::KEY_MESSAGE] ?? static::KEY_MESSAGE   => $message,
@@ -63,6 +68,10 @@ class JsonResponse
      */
     public static function withGlobalHeaders(array $headers = [])
     {
-        return array_merge($headers, Config::get('json-helper.global_headers', []));
+        if (class_exists('Illuminate\Support\Facades\Config')) {
+            $headers = array_merge($headers, Config::get('json-helper.global_headers', []));
+        }
+
+        return $headers;
     }
 }
