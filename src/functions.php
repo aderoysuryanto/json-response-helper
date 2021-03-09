@@ -21,10 +21,10 @@ if (! function_exists('success')) {
      * @param int $httpStatusCode
      * @return Response
      */
-    function success($data = [], string $message = 'OK', int $code = Code::OK, array $headers = [], int $httpStatusCode = Response::HTTP_OK)
+    function success(int $code = Code::OK, string $message = 'OK', $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
-            $data, $message, $code, $headers, $httpStatusCode
+            $code, $message, $data, $headers, $httpStatusCode
         );
     }
 }
@@ -39,10 +39,10 @@ if (! function_exists('fail')) {
      * @param int $httpStatusCode
      * @return Response
      */
-    function fail(string $message = 'Fail', int $code = Code::FAIL, $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
+    function fail(int $code = Code::FAIL, string $message = 'Fail', $data = [], array $headers = [], int $httpStatusCode = Response::HTTP_OK)
     {
         return Turbo\Api\Helper\JsonResponse::response(
-            $data, $message, $code, $headers, $httpStatusCode
+            $code, $message, $data, $headers, $httpStatusCode
         );
     }
 }
@@ -56,5 +56,25 @@ if (! function_exists('status_text')) {
     function status_text(int $code) : string
     {
         return Turbo\Api\Helper\Code::getStatusText($code);
+    }
+}
+
+if (! function_exists('unauthorized')) {
+
+    function unauthorized(int $code = 401, $message = 'Unauthorized', $data = [], array $headers = [], int $httpStatusCode = 401)
+    {
+        return Turbo\Api\Helper\JsonResponse::response(
+            $code, $message, $data, $headers, $httpStatusCode
+        );
+    }
+}
+
+if (! function_exists('not_found')) {
+
+    function not_found(int $code = 404, $message = 'Not found', $data = [], array $headers = [], int $httpStatusCode = 404)
+    {
+        return Turbo\Api\Helper\JsonResponse::response(
+            $code, $message, $data, $headers, $httpStatusCode
+        );
     }
 }
