@@ -64,7 +64,7 @@ class JsonResponse
         return [
             $keys[static::KEY_CODE] ?? static::KEY_CODE         => $code,
             $keys[static::KEY_MESSAGE] ?? static::KEY_MESSAGE   => $message,
-            $keys[static::KEY_DATA] ?? static::KEY_DATA         => empty($data) ? (object)[] : $data,
+            $keys[static::KEY_DATA] ?? static::KEY_DATA         => empty($data) ? [] : $data,
             'timestamp' => time()
         ];
     }
